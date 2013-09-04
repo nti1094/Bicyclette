@@ -162,7 +162,7 @@
         else baseColor = kGoodValueColor;
         
         text = [NSString stringWithFormat:@"%d",value];
-        textColor = kAnnotationValueTextColor;
+        textColor = kAnnotationFrame1Color;
     }
     else
     {

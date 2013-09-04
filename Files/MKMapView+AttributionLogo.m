@@ -13,6 +13,7 @@
 
 - (void) relocateAttributionLogoIfNecessary
 {
+    return;
 #if SCREENSHOTS
     // Debug for screenshot (Default.png)
     {

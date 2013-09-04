@@ -110,7 +110,7 @@ typedef enum {
                     CGPathRelease(path);
                     
                     [self drawSimpleGradientFromPoint1:CGPointZero toPoint2:CGPointMake(0, rect.size.height)
-                                                color1:[baseColor colorByAddingBrightness:.1] color2:[baseColor colorByAddingBrightness:-.1]];
+                                                color1:baseColor color2:baseColor];
                     
                     CGContextRestoreGState(c);
                 }
@@ -143,8 +143,8 @@ typedef enum {
                     {
                         CGContextSetLineWidth(c, borderWidth/scale);
                         
-                        [self drawShape:shape inRect:CGRectInset(rect, borderWidth*1.5/scale, borderWidth*1.5/scale) withStrokeColor:borderColor2];
-                        [self drawShape:shape inRect:CGRectInset(rect, borderWidth*2.5/scale, borderWidth*2.5/scale) withStrokeColor:borderColor3];
+                        [self drawShape:shape inRect:CGRectInset(rect, borderWidth*1.5/scale, borderWidth*1.5/scale) withStrokeColor:borderColor1];
+                        [self drawShape:shape inRect:CGRectInset(rect, borderWidth*2.5/scale, borderWidth*2.5/scale) withStrokeColor:borderColor1];
                     }
                     
                     CGContextRestoreGState(c);
@@ -155,8 +155,9 @@ typedef enum {
                 {
                     
                     // Make c the current GraphicsContext
-                    [textColor setFill];
-                    CGContextSetShadowWithColor(c, CGSizeMake(0, -1/scale), 0, [kAnnotationValueShadowColor CGColor]);
+                    CGContextSetFillColorWithColor(c, borderColor1.CGColor);
+                    CGContextSetStrokeColorWithColor(c, borderColor1.CGColor);
+//                    CGContextSetShadowWithColor(c, CGSizeMake(0, -1/scale), 0, [kAnnotationValueShadowColor CGColor]);
                     NSDictionary * attributes = @{NSFontAttributeName:kAnnotationValueFont};
                     CGSize textSize = [text sizeWithAttributes:attributes];
                     CGPoint point = CGPointMake(CGRectGetMidX(rect)-textSize.width/2, CGRectGetMidY(rect)-textSize.height/2);
