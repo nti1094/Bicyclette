@@ -86,10 +86,7 @@
 #define kToolbarHeight 44 // Strange. I was expecting to find a declared constant for it.
     CGRect mapViewFrame, toolBarFrame, frameAboveToolbar;
     CGRectDivide(self.view.bounds, &toolBarFrame, &frameAboveToolbar, kToolbarHeight, CGRectMaxYEdge);
-    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        mapViewFrame = self.view.bounds;
-    else
-        mapViewFrame = frameAboveToolbar;
+    mapViewFrame = self.view.bounds;
 
     // Create mapview
     self.mapView = [[MKMapView alloc]initWithFrame:mapViewFrame];
