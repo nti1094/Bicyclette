@@ -31,6 +31,8 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(showHelpIfNeeded) name:UIApplicationDidFinishLaunchingNotification
                                                    object:nil];
+        
+        self.backViewController = [[UIStoryboard storyboardWithName:@"PrefsVC" bundle:nil] instantiateInitialViewController];
     }
     return self;
 }

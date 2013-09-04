@@ -188,21 +188,21 @@
 /****************************************************************************/
 #pragma mark TableView
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.cells count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return (self.cells)[indexPath.row];
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if(indexPath.row==0)
-        [self openWebPage];
-    else
-        [self openEmailSupport];
-}
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    return [self.cells count];
+//}
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return (self.cells)[indexPath.row];
+//}
+//
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+//    if(indexPath.row==0)
+//        [self openWebPage];
+//    else
+//        [self openEmailSupport];
+//}
 
 /****************************************************************************/
 #pragma mark Actions
