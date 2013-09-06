@@ -16,7 +16,7 @@
     self.navigationItem.title = title;
     self.navigationItem.prompt = subtitle;
 
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(dismissBanner) object:nil];
 
 #if ! SCREENSHOTS
