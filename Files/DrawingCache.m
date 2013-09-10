@@ -155,10 +155,8 @@ typedef enum {
                 {
                     
                     // Make c the current GraphicsContext
-                    CGContextSetFillColorWithColor(c, borderColor1.CGColor);
-                    CGContextSetStrokeColorWithColor(c, borderColor1.CGColor);
-//                    CGContextSetShadowWithColor(c, CGSizeMake(0, -1/scale), 0, [kAnnotationValueShadowColor CGColor]);
-                    NSDictionary * attributes = @{NSFontAttributeName:kAnnotationValueFont};
+                    NSDictionary * attributes = @{NSFontAttributeName:kAnnotationValueFont,
+                                                  NSForegroundColorAttributeName:borderColor1};
                     CGSize textSize = [text sizeWithAttributes:attributes];
                     CGPoint point = CGPointMake(CGRectGetMidX(rect)-textSize.width/2, CGRectGetMidY(rect)-textSize.height/2);
                     [text drawAtPoint:point withAttributes:attributes];
