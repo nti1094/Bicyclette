@@ -356,9 +356,6 @@
     NSAssert([fence isKindOfClass:[Geofence class]], nil);
     MKCircleRenderer * circleRenderer = [[MKCircleRenderer alloc] initWithOverlay:fence];
     circleRenderer.fillColor = kFenceBackgroundColor;
-    circleRenderer.strokeColor = kAnnotationDash1Color;
-    circleRenderer.lineWidth = kDashedBorderWidth;
-    circleRenderer.lineDashPattern = @[@(kDashLength), @(kDashLength)];
 
     return circleRenderer;
 }

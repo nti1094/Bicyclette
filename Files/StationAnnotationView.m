@@ -74,17 +74,11 @@
     if(_starButton==nil)
     {
         _starButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_starButton setTitle:@"☆" forState:UIControlStateNormal];
-        [_starButton setTitle:@"★" forState:UIControlStateSelected];
-        _starButton.titleLabel.font = [UIFont systemFontOfSize:24];
-        [_starButton setTitleColor:[UIColor colorWithWhite:1 alpha:.9] forState:UIControlStateNormal];
-        [_starButton setTitleShadowColor:[UIColor colorWithWhite:.2 alpha:1] forState:UIControlStateNormal];
-        _starButton.titleLabel.shadowOffset = CGSizeMake(0, -1);
+        [_starButton setTitle:@"☆ " forState:UIControlStateNormal];
+        [_starButton setTitle:@"★ " forState:UIControlStateSelected];
+        _starButton.titleLabel.font = [UIFont fontWithName:@"Arial" size:24];
+        [_starButton setTitleColor:kBicycletteBlue forState:UIControlStateNormal];
         [_starButton sizeToFit];
-        CGRect f = _starButton.frame;
-        f.size.height = MAX(f.size.height,32);
-        f.size.width = MAX(f.size.width,32);
-        _starButton.frame = f;
         _starButton.selected = self.station.starredValue;
     }
     return _starButton;

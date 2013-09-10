@@ -29,7 +29,7 @@
 #define kWarningValueColor				[UIColor colorWithRed:221/255.0f green:170/255.0f blue:59/255.0f alpha:1.0]
 #define kCriticalValueColor				[UIColor colorWithRed:229/255.0f green:0/255.0f blue:15/255.0f alpha:1.0]
 
-#define kFenceBackgroundColor			[UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:.5f]
+#define kFenceBackgroundColor			[kBicycletteBlue colorWithAlpha:.2]
 
 #define kAnnotationDash1Color			[UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0]
 #define kAnnotationDash2Color			[UIColor whiteColor]
