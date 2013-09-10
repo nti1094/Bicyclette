@@ -11,6 +11,7 @@
 #import "RootVC.h"
 #import "CitiesController.h"
 #import "BicycletteCity.h"
+#import "Style.h"
 
 /****************************************************************************/
 #pragma mark Private Methods
@@ -46,6 +47,8 @@
     [GAI sharedInstance].defaultTracker.useHttps = NO;
 #endif
     [GAI sharedInstance].defaultTracker.anonymize = YES;
+    
+    self.window.tintColor = kBicycletteBlue;
     
     self.citiesController = [CitiesController new];
     
