@@ -11,7 +11,6 @@
 #import "BicycletteCity+Update.h"
 #import "Station+Update.h"
 #import "CollectionsAdditions.h"
-#import "RegionAnnotationView.h"
 #import "StationAnnotationView.h"
 #import "DrawingCache.h"
 #import "MKMapView+AttributionLogo.h"
@@ -313,14 +312,6 @@
 {
 	if(annotation == self.mapView.userLocation)
 		return nil;
-	else if([annotation isKindOfClass:[Region class]])
-	{
-		RegionAnnotationView * regionAV = (RegionAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[RegionAnnotationView reuseIdentifier]];
-		if(nil==regionAV)
-			regionAV = [[RegionAnnotationView alloc] initWithAnnotation:annotation drawingCache:_drawingCache];
-
-        return regionAV;
-	}
 	else if([annotation isKindOfClass:[Station class]])
 	{
 		StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[StationAnnotationView reuseIdentifier]];

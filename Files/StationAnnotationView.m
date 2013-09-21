@@ -140,7 +140,7 @@
 - (void) displayLayer:(CALayer *)layer
 {
     // Prepare Value
-    UIColor * baseColor, * textColor;
+    UIColor * baseColor;
     NSString * text;
 
     if([[self station] statusDataIsFresh] && [[self station] openValue])
@@ -156,7 +156,6 @@
         else baseColor = kGoodValueColor;
         
         text = [NSString stringWithFormat:@"%d",value];
-        textColor = kAnnotationFrame1Color;
     }
     else
     {
@@ -165,17 +164,14 @@
             text = [NSString stringWithFormat:@"%d",[self station].status_totalValue];
         else
             text = @"-";
-        textColor = kAnnotationValueTextColorAlt;
     }
         
     self.layer.contents = (id)[self.drawingCache sharedImageWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
                                                                scale:self.layer.contentsScale
                                                                shape:self.mode==StationAnnotationModeBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
-                                                          borderMode:[[self station] starredValue]? BorderModeDashes : BorderModeSolid
-                                                           baseColor:baseColor
-                                                               value:text
-                                                           textColor:textColor
-                                                               phase:0];
+                                                     backgroundColor:baseColor
+                                                         borderColor:[[self station] starredValue]? kBicycletteBlue : kAnnotationFrame1Color
+                                                               value:text];
 }
 
 - (void) drawRect:(CGRect)rect
