@@ -155,10 +155,10 @@
     [self forceFrontmost];
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void) viewDidLayoutSubviews
 {
-    [super viewWillAppear:animated];
-    [self.mapView relocateAttributionLogoIfNecessary];
+    [super viewDidLayoutSubviews];
+    [self.mapView relocateAttributionLabelIfNecessary];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -236,7 +236,7 @@
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    [self.mapView relocateAttributionLogoIfNecessary];
+    [self.mapView relocateAttributionLabelIfNecessary];
 }
 
 - (BOOL) shouldAutorotate
