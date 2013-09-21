@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4504" systemVersion="13A558" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="MMV-jH-Gyn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4504" systemVersion="13A569" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="MMV-jH-Gyn">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3734.1"/>
     </dependencies>
@@ -15,16 +15,30 @@
                         <sections>
                             <tableViewSection id="PzS-OQ-lDf">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="74" id="QLe-BN-qfF">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="vog-8d-hap" detailTextLabel="0ny-a7-ZI2" imageView="dst-eU-4qj" rowHeight="74" style="IBUITableViewCellStyleSubtitle" id="QLe-BN-qfF">
                                         <rect key="frame" x="0.0" y="35" width="320" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QLe-BN-qfF" id="qeJ-6Q-111">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="dpL-pP-L3R">
-                                                    <rect key="frame" x="132" y="8" width="57" height="57"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Bicyclette" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vog-8d-hap">
+                                                    <rect key="frame" x="55" y="18" width="80" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0ny-a7-ZI2">
+                                                    <rect key="frame" x="55" y="40" width="43" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="AppIcon29x29" id="dst-eU-4qj">
+                                                    <rect key="frame" x="15" y="26" width="25" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -96,6 +110,9 @@
                                                     <state key="normal" title="Dire merci !">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="donate" destination="MMV-jH-Gyn" eventType="touchUpInside" id="JVB-u0-n9P"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -114,6 +131,20 @@
                                                     <state key="normal" title="Noter sur l’App Store">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="rate:" destination="MMV-jH-Gyn" eventType="touchUpInside" id="FBu-w6-goT"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1nX-lj-913">
+                                                    <rect key="frame" x="99" y="12" width="25" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <state key="normal" image="twitter.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="tweet:" destination="MMV-jH-Gyn" eventType="touchUpInside" id="Iae-15-kng"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -133,6 +164,14 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Un problème ?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcP-Sk-8cN">
+                                                    <rect key="frame" x="20" y="14" width="158" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -157,6 +196,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dmp-DA-viS">
                                                     <rect key="frame" x="184" y="6" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="switchRegionMonitoring:" destination="MMV-jH-Gyn" eventType="valueChanged" id="7UU-VS-5Eh"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Alertes Géographiques Automatiques :" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="1" preferredMaxLayoutWidth="158" translatesAutoresizingMaskIntoConstraints="NO" id="wdj-Fa-nUq">
                                                     <rect key="frame" x="12" y="6" width="158" height="37"/>
@@ -191,6 +233,9 @@
                                                     <state key="normal" title="Mettre à jour">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="updateStationsList" destination="MMV-jH-Gyn" eventType="touchUpInside" id="yGv-lf-Vkb"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -203,6 +248,23 @@
                             <outlet property="delegate" destination="MMV-jH-Gyn" id="Ruq-yl-SKD"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="appstoreRatingsButton" destination="5yj-Zc-mf1" id="53X-Px-QTz"/>
+                        <outlet property="contactSupportButton" destination="Oth-Dj-8fM" id="3Sb-hf-mPG"/>
+                        <outlet property="designAndCodeLabel" destination="h2j-WT-ZTA" id="GEH-y0-7mx"/>
+                        <outlet property="enableGeofencesLabel" destination="wdj-Fa-nUq" id="v0C-Tw-FD0"/>
+                        <outlet property="geofenceUnavailableLabel" destination="eFG-fJ-1gg" id="yPc-Sb-CWw"/>
+                        <outlet property="geofencesSwitch" destination="dmp-DA-viS" id="pJ3-cg-RYr"/>
+                        <outlet property="seeHelpButton" destination="hs5-fp-7Hs" id="j9B-Pv-wFJ"/>
+                        <outlet property="seeHelpLabel" destination="LcP-Sk-8cN" id="wXL-R9-CBo"/>
+                        <outlet property="storeButton" destination="57d-wB-ydP" id="xGR-GD-j7I"/>
+                        <outlet property="storeIndicator" destination="0bG-i3-IVX" id="vf3-jE-1I8"/>
+                        <outlet property="storeLabel" destination="Vvi-bv-yq8" id="v8h-y3-SoQ"/>
+                        <outlet property="updateButton" destination="8Xz-ZK-V0P" id="QGe-88-dby"/>
+                        <outlet property="updateIndicator" destination="7g6-7x-gGl" id="7G6-Zp-8wk"/>
+                        <outlet property="updateLabel" destination="Kqh-aw-0nh" id="YFS-ox-kmJ"/>
+                        <outlet property="updateView" destination="Lpw-Js-3nM" id="qZY-Vc-SYu"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nZg-Z2-DFl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -210,7 +272,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AppIcon" width="25" height="20"/>
+        <image name="AppIcon29x29" width="25" height="20"/>
+        <image name="twitter.png" width="25" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
