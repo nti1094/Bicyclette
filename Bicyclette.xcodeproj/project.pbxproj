@@ -135,7 +135,6 @@
 		37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F7587A15C56A8300907A05 /* UIApplication+LocalAlerts.m */; };
 		37F827DF167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */; };
 		37F827E0167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F827DE167BF9D4001D85D8 /* RennesVeloStarCity.m */; };
-		942D480216A841F100F6CD12 /* UIView+NibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 942D480116A841F100F6CD12 /* UIView+NibLoading.m */; };
 		944A975E16FB1A6600254D3A /* TOBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 944A975D16FB1A6600254D3A /* TOBikeCity.m */; };
 		944A975F16FB1A6600254D3A /* TOBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 944A975D16FB1A6600254D3A /* TOBikeCity.m */; };
 		94A30ABA16DD24B40043ACFC /* libCoreDataModel-MacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A30AB216DD24870043ACFC /* libCoreDataModel-MacOS.a */; };
@@ -381,8 +380,6 @@
 		942D47F816A82DD700F6CD12 /* Barcelone.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Barcelone.gpx; sourceTree = "<group>"; };
 		942D47F916A82DD700F6CD12 /* Lyon.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lyon.gpx; sourceTree = "<group>"; };
 		942D47FA16A82DD700F6CD12 /* Rennes.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Rennes.gpx; sourceTree = "<group>"; };
-		942D480016A841F100F6CD12 /* UIView+NibLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NibLoading.h"; sourceTree = "<group>"; };
-		942D480116A841F100F6CD12 /* UIView+NibLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NibLoading.m"; sourceTree = "<group>"; };
 		944A975D16FB1A6600254D3A /* TOBikeCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOBikeCity.m; sourceTree = "<group>"; };
 		94A30AAC16DD24870043ACFC /* CoreDataModel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CoreDataModel.xcodeproj; path = submodules/CoreDataModel/CoreDataModel.xcodeproj; sourceTree = "<group>"; };
 		94B07A8A16A7190C00F6331F /* mogenerate.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = mogenerate.sh; sourceTree = "<group>"; };
@@ -559,8 +556,6 @@
 				371982C016451F92006CF77D /* FanContainerViewController.m */,
 				3730161615977E1900347C9F /* DrawingCache.h */,
 				3730161715977E1900347C9F /* DrawingCache.m */,
-				942D480016A841F100F6CD12 /* UIView+NibLoading.h */,
-				942D480116A841F100F6CD12 /* UIView+NibLoading.m */,
 				373016191597800E00347C9F /* UIColor+hsb.h */,
 				3730161A1597800E00347C9F /* UIColor+hsb.m */,
 				3705B40A15B9E8DB009C8AAA /* MKMapView+AttributionLogo.h */,
@@ -1208,7 +1203,6 @@
 				37410ADD16A0CDD100F2E958 /* _StationParse.m in Sources */,
 				3763582616A17A0C00C29B56 /* BicycletteCity+Update.m in Sources */,
 				3763582A16A19D4A00C29B56 /* BicycletteCity+ServiceDescription.m in Sources */,
-				942D480216A841F100F6CD12 /* UIView+NibLoading.m in Sources */,
 				944A975F16FB1A6600254D3A /* TOBikeCity.m in Sources */,
 				94EDC1C6170587E200113E76 /* BCycleCity.m in Sources */,
 				94B224EE1736997A004E1009 /* BIXICity.m in Sources */,
