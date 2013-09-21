@@ -7,6 +7,8 @@
 //
 // http://developer.apple.com/library/ios/#qa/qa1703/_index.html
 
+#if SCREENSHOTS
+
 #import "UIApplication+screenshot.h"
 
 @implementation UIApplication (screenshot)
@@ -59,3 +61,5 @@
 
 
 @end
+
+#endif

@@ -12,7 +12,6 @@
 #import "UIView+Screenshot.h"
 #import "BicycletteCity.h"
 #import "CitiesController.h"
-#import "UIViewController+Banner.h"
 #import "UIApplication+LocalAlerts.h"
 
 @interface RootVC () <UIAlertViewDelegate>

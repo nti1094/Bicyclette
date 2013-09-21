@@ -16,7 +16,6 @@
 #import "StationAnnotationView.h"
 #import "DrawingCache.h"
 #import "MKMapView+AttributionLogo.h"
-#import "UIViewController+Banner.h"
 #import "MapVC+DebugScreenshots.h"
 #import "FanContainerViewController.h"
 #import "MapViewScaleView.h"
@@ -187,11 +186,11 @@
         {
             [self updateModeControl];
             if(self.controller.currentCity)
-                [self displayBannerTitle:self.controller.currentCity.title
+                [self showTitle:self.controller.currentCity.title
                                 subtitle:nil
                                   sticky:NO];
             else
-                [self dismissBanner];
+                [self dismissTitle];
         }
     }
     else
@@ -203,15 +202,15 @@
     if(note.object==self.controller.currentCity && [self isVisibleViewController])
     {
         if([note.name isEqualToString:BicycletteCityNotifications.updateBegan])
-            [self displayBannerTitle:self.controller.currentCity.title
+            [self showTitle:self.controller.currentCity.title
                             subtitle:[NSString stringWithFormat:NSLocalizedString(@"UPDATING : FETCHING", nil)]
                               sticky:YES];
         else if([note.name isEqualToString:BicycletteCityNotifications.updateGotNewData])
-            [self displayBannerTitle:self.controller.currentCity.title
+            [self showTitle:self.controller.currentCity.title
                             subtitle:[NSString stringWithFormat:NSLocalizedString(@"UPDATING : PARSING", nil)]
                               sticky:YES];
         else if([note.name isEqualToString:BicycletteCityNotifications.updateSucceeded])
-            [self displayBannerTitle:self.controller.currentCity.title
+            [self showTitle:self.controller.currentCity.title
                             subtitle:[NSString stringWithFormat:NSLocalizedString(@"UPDATING : COMPLETED", nil)]
                               sticky:NO];
     }
@@ -416,6 +415,30 @@
         StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView viewForAnnotation:annotation];
         stationAV.mode = self.stationMode;
     }
+}
+
+/****************************************************************************/
+#pragma mark Banner
+
+- (void) showTitle:(NSString*)title subtitle:(NSString*)subtitle sticky:(BOOL)sticky
+{
+    self.navigationItem.title = title;
+    self.navigationItem.prompt = subtitle;
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(dismissTitle) object:nil];
+    
+#if ! SCREENSHOTS
+    if(!sticky)
+        [self performSelector:@selector(dismissTitle) withObject:nil afterDelay:3];
+#endif
+}
+
+- (void) dismissTitle
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 @end

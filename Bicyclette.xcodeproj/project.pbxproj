@@ -131,7 +131,6 @@
 		37EC535215BAFB0400F45C09 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534815BAFB0400F45C09 /* Default.png */; };
 		37EC535315BAFB0400F45C09 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EC534915BAFB0400F45C09 /* Default@2x.png */; };
 		37EE011915BC87E4008376A1 /* GeofencesMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE011815BC87E4008376A1 /* GeofencesMonitor.m */; };
-		37F092371680D671001E8127 /* UIViewController+Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F092361680D671001E8127 /* UIViewController+Banner.m */; };
 		37F0923F1680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */; };
 		37F092401680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */; };
 		37F5FD68161636FA00E6FFC2 /* UIApplication+screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */; };
@@ -379,11 +378,9 @@
 		37EF844115BCA89A00B84CA3 /* Gare de Lyon.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Gare de Lyon.gpx"; sourceTree = "<group>"; };
 		37EF844215BCA89A00B84CA3 /* Saint-Michel.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Saint-Michel.gpx"; sourceTree = "<group>"; };
 		37EFCF3A159E495F007B2E41 /* Style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Style.h; sourceTree = "<group>"; };
-		37F092351680D671001E8127 /* UIViewController+Banner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Banner.h"; sourceTree = "<group>"; };
-		37F092361680D671001E8127 /* UIViewController+Banner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Banner.m"; sourceTree = "<group>"; };
 		37F0923E1680E3D9001E8127 /* LaRochelleYeloCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaRochelleYeloCity.m; sourceTree = "<group>"; };
-		37F5FD66161636FA00E6FFC2 /* UIApplication+screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+screenshot.h"; sourceTree = "<group>"; };
-		37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+screenshot.m"; sourceTree = "<group>"; };
+		37F5FD66161636FA00E6FFC2 /* UIApplication+screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+screenshot.h"; path = "../Files/UIApplication+screenshot.h"; sourceTree = "<group>"; };
+		37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+screenshot.m"; path = "../Files/UIApplication+screenshot.m"; sourceTree = "<group>"; };
 		37F5FD6A16165B2E00E6FFC2 /* MapVC+DebugScreenshots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MapVC+DebugScreenshots.h"; path = "../Files/MapVC+DebugScreenshots.h"; sourceTree = "<group>"; };
 		37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MapVC+DebugScreenshots.m"; path = "../Files/MapVC+DebugScreenshots.m"; sourceTree = "<group>"; };
 		37F7587915C56A8300907A05 /* UIApplication+LocalAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LocalAlerts.h"; sourceTree = "<group>"; };
@@ -571,16 +568,12 @@
 				3719607016B303CD005CDA6D /* VerticallyAlignedLabel.m */,
 				371982BF16451F92006CF77D /* FanContainerViewController.h */,
 				371982C016451F92006CF77D /* FanContainerViewController.m */,
-				37F092351680D671001E8127 /* UIViewController+Banner.h */,
-				37F092361680D671001E8127 /* UIViewController+Banner.m */,
 				3730161615977E1900347C9F /* DrawingCache.h */,
 				3730161715977E1900347C9F /* DrawingCache.m */,
 				37C56FDA15B1A38F00795961 /* UIView+Screenshot.h */,
 				37C56FDB15B1A38F00795961 /* UIView+Screenshot.m */,
 				942D480016A841F100F6CD12 /* UIView+NibLoading.h */,
 				942D480116A841F100F6CD12 /* UIView+NibLoading.m */,
-				37F5FD66161636FA00E6FFC2 /* UIApplication+screenshot.h */,
-				37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */,
 				371D90C8158FE19900E509E6 /* TransparentToolbar.h */,
 				371D90C9158FE19900E509E6 /* TransparentToolbar.m */,
 				373016191597800E00347C9F /* UIColor+hsb.h */,
@@ -699,6 +692,8 @@
 				37FF34C116D65C1A008D8880 /* Toulouse.gpx */,
 				37F5FD6A16165B2E00E6FFC2 /* MapVC+DebugScreenshots.h */,
 				37F5FD6B16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m */,
+				37F5FD66161636FA00E6FFC2 /* UIApplication+screenshot.h */,
+				37F5FD67161636FA00E6FFC2 /* UIApplication+screenshot.m */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
@@ -1211,7 +1206,6 @@
 				3709F575167B755600F865E3 /* Station+Update.m in Sources */,
 				377620E7167BE61B004E9E3D /* OrleansVeloPlusCity.m in Sources */,
 				37F827E0167BF9D4001D85D8 /* RennesVeloStarCity.m in Sources */,
-				37F092371680D671001E8127 /* UIViewController+Banner.m in Sources */,
 				37F092401680E3D9001E8127 /* LaRochelleYeloCity.m in Sources */,
 				370C477F1682877200CA40E8 /* MelbourneBikeShareCity.m in Sources */,
 				37E43D901684AEAA0085EC4F /* FlatListCity.m in Sources */,
