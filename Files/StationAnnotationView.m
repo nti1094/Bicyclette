@@ -9,6 +9,7 @@
 #import "StationAnnotationView.h"
 #import "Station.h"
 #import "Station+Update.h"
+#import "StationAnnotationView+Drawing.h"
 
 @implementation StationAnnotationView
 {
@@ -16,9 +17,11 @@
     UIButton * _starButton;
 }
 
-- (id) initWithAnnotation:(id<MKAnnotation>)annotation drawingCache:(DrawingCache*)drawingCache;
+
+- (id) initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithAnnotation:annotation drawingCache:drawingCache];
+    self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
+    
     self.frame = CGRectMake(0,0,kStationAnnotationViewSize,kStationAnnotationViewSize);
     _loadingLayer = [CALayer new];
     _loadingLayer.frame = self.frame;
@@ -43,21 +46,26 @@
 
 - (void) setAnnotation:(id<MKAnnotation>)annotation
 {
-    for (NSString * property in [[self class] stationObservedProperties])
+    for (NSString * property in [[self class] stationObservedProperties]) {
         [self.station removeObserver:self forKeyPath:property];
+    }
     
     [super setAnnotation:annotation];
     
-    for (NSString * property in [[self class] stationObservedProperties])
+    for (NSString * property in [[self class] stationObservedProperties]) {
         [self.station addObserver:self forKeyPath:property options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:(__bridge void *)([StationAnnotationView class])];
-
+    }
+    
+    [self setNeedsDisplay];
 }
 
 - (void) prepareForReuse
 {
     [super prepareForReuse];
-    for (NSString * property in [[self class] stationObservedProperties])
+    for (NSString * property in [[self class] stationObservedProperties]) {
         [self.station removeObserver:self forKeyPath:property];
+    }
+    self.annotation = nil;
 }
 
 - (void) setMode:(StationAnnotationMode)mode_
@@ -165,13 +173,11 @@
         else
             text = @"-";
     }
-        
-    self.layer.contents = (id)[self.drawingCache sharedImageWithSize:CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)
-                                                               scale:self.layer.contentsScale
-                                                               shape:self.mode==StationAnnotationModeBikes? BackgroundShapeOval : BackgroundShapeRoundedRect
-                                                     backgroundColor:baseColor
-                                                         borderColor:[[self station] starredValue]? kBicycletteBlue : kAnnotationFrame1Color
-                                                               value:text];
+    
+    self.layer.contents = (id)[StationAnnotationView sharedImageWithMode:self.mode
+                                                         backgroundColor:baseColor
+                                                                 starred:self.station.starredValue
+                                                                   value:text];
 }
 
 - (void) drawRect:(CGRect)rect

@@ -1,61 +1,63 @@
 //
-//  DrawingCache.m
+//  StationAnnotationView+Drawing.
 //  Bicyclette
 //
 //  Created by Nicolas Bouilleaud on 24/06/12.
 //  Copyright (c) 2012 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import "DrawingCache.h"
+#import "StationAnnotationView+Drawing.h"
 #import "Style.h"
 
 #import "UIColor+hsb.h"
 
-@implementation DrawingCache
-{
-    NSCache * _cache;
-}
+typedef enum{
+    BackgroundShapeRoundedRect,
+    BackgroundShapeOval,
+}BackgroundShape;
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        _cache = [NSCache new];
-    }
-    return self;
-}
+@implementation StationAnnotationView (Drawing)
 
-- (CGImageRef)sharedImageWithSize:(CGSize)size
-                            scale:(CGFloat)scale
-                            shape:(BackgroundShape)shape
++ (CGImageRef)sharedImageWithMode:(StationAnnotationMode)mode
                   backgroundColor:(UIColor*)backgroundColor
-                      borderColor:(UIColor*)borderColor
-                            value:(NSString*)text
+                          starred:(BOOL)starred
+                            value:(NSString*)text;
 {
     NSParameterAssert(backgroundColor);
-    NSParameterAssert(borderColor);
     NSParameterAssert([NSThread currentThread]==[NSThread mainThread]);
     
-    NSString * key = [NSString stringWithFormat:@"image%d_%d_%f_%d_%@_%@_%@",
-                      (int)size.width, (int)size.height, (float)scale, (int)shape,
-                      [backgroundColor hsbString], [borderColor hsbString],
-                      text];
+    
+    // Lookup in cache
+    NSString * key = [NSString stringWithFormat:@"image%d_%@_%d_%@", (int)mode, [backgroundColor hsbString], (int)starred, text];
+    
+    static NSCache * _cache;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _cache = [NSCache new];
+    });
     
     CGImageRef result = (__bridge CGImageRef)[_cache objectForKey:key];
     if(result) {
         return result;
     }
     
+    // Params
+    BackgroundShape shape = mode==StationAnnotationModeBikes? BackgroundShapeOval : BackgroundShapeRoundedRect;
+    UIColor * borderColor = starred ? kBicycletteBlue : kAnnotationFrame1Color;
+    
+    // Create context
+    CGFloat scale = [UIScreen mainScreen].scale;
+    
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef c = CGBitmapContextCreate(NULL, size.width*scale, size.height*scale, 8, 0, colorSpace, (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
+    CGContextRef c = CGBitmapContextCreate(NULL, kStationAnnotationViewSize*scale, kStationAnnotationViewSize*scale, 8, 0, colorSpace, (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
     CGColorSpaceRelease(colorSpace);
     
-    CGContextTranslateCTM(c, 0, size.height*scale);
+    CGContextTranslateCTM(c, 0, kStationAnnotationViewSize*scale);
     CGContextScaleCTM(c, 1.0, -1.0);
     
     CGContextScaleCTM(c, scale, scale);
     
-    CGRect rect = (CGRect){CGPointZero, size};
+    CGRect rect = (CGRect){CGPointZero, CGSizeMake(kStationAnnotationViewSize, kStationAnnotationViewSize)};
     
     // Draw background
     CGContextSaveGState(c);
@@ -103,7 +105,7 @@
 }
 
 // Create a path
-- (CGPathRef) newPathWithShape:(BackgroundShape)shape inRect:(CGRect)rect
++ (CGPathRef) newPathWithShape:(BackgroundShape)shape inRect:(CGRect)rect
 {
 	CGPathRef path;
     switch (shape) {
@@ -114,7 +116,7 @@
 }
 
 // Create a path for a rect with rounded corners
-- (CGPathRef) newPath:(CGRect)rect cornerRadius:(CGFloat)cornerRadius
++ (CGPathRef) newPath:(CGRect)rect cornerRadius:(CGFloat)cornerRadius
 {
     CGFloat minx = CGRectGetMinX(rect), midx = CGRectGetMidX(rect), maxx = CGRectGetMaxX(rect);
     CGFloat miny = CGRectGetMinY(rect), midy = CGRectGetMidY(rect), maxy = CGRectGetMaxY(rect);

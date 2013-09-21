@@ -12,7 +12,6 @@
 #import "Station+Update.h"
 #import "CollectionsAdditions.h"
 #import "StationAnnotationView.h"
-#import "DrawingCache.h"
 #import "MKMapView+AttributionLogo.h"
 #import "MapVC+DebugScreenshots.h"
 #import "FanContainerViewController.h"
@@ -38,10 +37,7 @@
 /****************************************************************************/
 #pragma mark -
 
-@implementation MapVC 
-{
-    DrawingCache * _drawingCache;
-}
+@implementation MapVC
 
 - (void) awakeFromNib
 {
@@ -55,8 +51,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateSucceeded object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
-
-    _drawingCache = [DrawingCache new];
 }
 
 - (void)dealloc {
@@ -314,10 +308,11 @@
 		return nil;
 	else if([annotation isKindOfClass:[Station class]])
 	{
-		StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:[StationAnnotationView reuseIdentifier]];
-		if(nil==stationAV)
-			stationAV = [[StationAnnotationView alloc] initWithAnnotation:annotation drawingCache:_drawingCache];
-
+		StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"Station"];
+		if(nil==stationAV) {
+			stationAV = [[StationAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Station"];
+        }
+        
         stationAV.mode = self.stationMode;
 		return stationAV;
 	}
@@ -419,8 +414,9 @@
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(dismissTitle) object:nil];
     
 #if ! SCREENSHOTS
-    if(!sticky)
+    if(!sticky) {
         [self performSelector:@selector(dismissTitle) withObject:nil afterDelay:3];
+    }
 #endif
 }
 
