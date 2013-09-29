@@ -113,11 +113,11 @@
         {
             _starButton.selected = self.station.starredValue;
         }
-        else
-        {
+        else if(![change[NSKeyValueChangeOldKey] isEqual:change[NSKeyValueChangeNewKey]]) {
             [self setNeedsDisplay];
-            if(change[NSKeyValueChangeOldKey] && ![change[NSKeyValueChangeOldKey] isEqual:change[NSKeyValueChangeNewKey]])
+            if(change[NSKeyValueChangeOldKey]) {
                 [self pulse];
+            }
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
