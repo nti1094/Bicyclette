@@ -36,8 +36,10 @@
         }
 
         // top right corner
-        label.frame = (CGRect){CGPointMake(self.bounds.size.width - label.frame.size.width - xMargin, yMargin),label.frame.size};
-        label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
+        [UIView performWithoutAnimation:^{
+            label.frame = (CGRect){CGPointMake(self.bounds.size.width - label.frame.size.width - xMargin, yMargin),label.frame.size};
+            label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
+        }];
     }
 }
 
