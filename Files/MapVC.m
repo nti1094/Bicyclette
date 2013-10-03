@@ -21,7 +21,7 @@
 #import "MapVC+DebugScreenshots.h"
 #import "CityAnnotationView.h"
 #import "MKUtilities.h"
-
+#import "CityOverlayRenderer.h"
 @interface MapVC()
 // UI
 @property MKMapView * mapView;
@@ -327,9 +327,8 @@
         circleRenderer.fillColor = kFenceBackgroundColor;
         return circleRenderer;
     } else if ([overlay isKindOfClass:[BicycletteCity class]]) {
-        MKCircleRenderer * circleRenderer = [[MKCircleRenderer alloc] initWithOverlay:overlay];
-        circleRenderer.fillColor = [UIColor greenColor];
-        return circleRenderer;
+        [(id)overlay mainContext];
+        return [[CityOverlayRenderer alloc] initWithOverlay:overlay];
     } else {
         return nil;
     }
