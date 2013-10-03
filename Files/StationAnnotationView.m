@@ -115,9 +115,6 @@
         }
         else if(![change[NSKeyValueChangeOldKey] isEqual:change[NSKeyValueChangeNewKey]]) {
             [self setNeedsDisplay];
-            if(change[NSKeyValueChangeOldKey]) {
-                [self pulse];
-            }
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -133,17 +130,6 @@
 
 /****************************************************************************/
 #pragma mark Display
-
-- (void) pulse
-{
-    [UIView animateWithDuration:.3
-                     animations:^{ self.transform = CGAffineTransformMakeScale(1.2, 1.2); }
-                     completion:^(BOOL finished) {
-                         [UIView animateWithDuration:.3
-                                          animations:^{ self.transform = CGAffineTransformIdentity; }
-                                          completion:nil];
-                     }];
-}
 
 - (void) displayLayer:(CALayer *)layer
 {
