@@ -320,13 +320,19 @@
 	return nil;
 }
 
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(Geofence*)fence
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
-    NSAssert([fence isKindOfClass:[Geofence class]], nil);
-    MKCircleRenderer * circleRenderer = [[MKCircleRenderer alloc] initWithOverlay:fence];
-    circleRenderer.fillColor = kFenceBackgroundColor;
-
-    return circleRenderer;
+    if([overlay isKindOfClass:[Geofence class]], nil) {
+        MKCircleRenderer * circleRenderer = [[MKCircleRenderer alloc] initWithOverlay:overlay];
+        circleRenderer.fillColor = kFenceBackgroundColor;
+        return circleRenderer;
+    } else if ([overlay isKindOfClass:[BicycletteCity class]]) {
+        MKCircleRenderer * circleRenderer = [[MKCircleRenderer alloc] initWithOverlay:overlay];
+        circleRenderer.fillColor = [UIColor greenColor];
+        return circleRenderer;
+    } else {
+        return nil;
+    }
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -361,8 +367,6 @@
         } else {
             [self.controller selectCity:(BicycletteCity*)view.annotation];
         }
-    } else if([view.annotation isKindOfClass:[Region class]]) {
-		[self zoomInRegion:(Region*)view.annotation];
     } else if([view.annotation isKindOfClass:[Station class]]) {
         if([self.controller.currentCity canUpdateIndividualStations])
             [(Station*)view.annotation updateWithCompletionBlock:nil];
@@ -380,14 +384,6 @@
 
 /****************************************************************************/
 #pragma mark Actions
-
-- (void) zoomInRegion:(Region*)region
-{
-    MKCoordinateRegion cregion = [self.mapView regionThatFits:region.coordinateRegion];
-    CLLocationDistance meters = [[NSUserDefaults standardUserDefaults] doubleForKey:@"CitiesController.MapRegionZoomDistance"];
-    cregion = MKCoordinateRegionMakeWithDistance(cregion.center, meters, meters);
-	[self.mapView setRegion:cregion animated:YES];
-}
 
 - (void) switchMode:(UISegmentedControl*)sender
 {
