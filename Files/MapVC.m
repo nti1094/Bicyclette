@@ -327,7 +327,6 @@
         circleRenderer.fillColor = kFenceBackgroundColor;
         return circleRenderer;
     } else if ([overlay isKindOfClass:[BicycletteCity class]]) {
-        [(id)overlay mainContext];
         return [[CityOverlayRenderer alloc] initWithOverlay:overlay];
     } else {
         return nil;

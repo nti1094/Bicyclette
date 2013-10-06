@@ -33,7 +33,7 @@
           zoomScale:(MKZoomScale)zoomScale
           inContext:(CGContextRef)context
 {
-    CGFloat roadWidth = MKRoadWidthAtZoomScale(zoomScale);
+    CGFloat stationRadius = MKRoadWidthAtZoomScale(zoomScale) * 2;
     
     NSArray * stations = [self.city stationsWithinRegion:MKCoordinateRegionForMapRect(mapRect)];
     for (Station * station in stations) {
@@ -53,9 +53,11 @@
         } else {
             color = kUnknownValueColor;
         }
+        color = [color colorWithAlphaComponent:.5];
         CGContextSetFillColorWithColor(context, color.CGColor);
-        
-        CGContextFillEllipseInRect(context, CGRectIntegral(CGRectMake(point.x-roadWidth/2, point.y-roadWidth/2, point.x+roadWidth/2, point.y+roadWidth/2)));
+
+        CGRect rect = CGRectMake(point.x-stationRadius/2, point.y-stationRadius/2, stationRadius, stationRadius);
+        CGContextFillEllipseInRect(context, CGRectIntegral(rect));
     }
     
     
