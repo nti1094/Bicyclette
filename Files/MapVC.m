@@ -271,6 +271,8 @@
     NSArray * oldOverlays = self.mapView.overlays;
     [self.mapView removeOverlays:[oldOverlays arrayByRemovingObjectsInArray:newOverlays]];
     [self.mapView addOverlays:[newOverlays arrayByRemovingObjectsInArray:oldOverlays]];
+
+    [[self.mapView rendererForOverlay:self.controller.currentCity] setNeedsDisplay];
 }
 
 /****************************************************************************/
@@ -327,7 +329,9 @@
         circleRenderer.fillColor = kFenceBackgroundColor;
         return circleRenderer;
     } else if ([overlay isKindOfClass:[BicycletteCity class]]) {
-        return [[CityOverlayRenderer alloc] initWithOverlay:overlay];
+        CityOverlayRenderer * cityRenderer = [[CityOverlayRenderer alloc] initWithOverlay:overlay];
+        cityRenderer.mode = self.stationMode;
+        return cityRenderer;
     } else {
         return nil;
     }
@@ -390,6 +394,9 @@
         StationAnnotationView * stationAV = (StationAnnotationView*)[self.mapView viewForAnnotation:annotation];
         stationAV.mode = self.stationMode;
     }
+    CityOverlayRenderer * cityRenderer = (CityOverlayRenderer *)[self.mapView rendererForOverlay:self.controller.currentCity];
+    cityRenderer.mode = self.stationMode;
+    [cityRenderer setNeedsDisplay];
 }
 
 /****************************************************************************/

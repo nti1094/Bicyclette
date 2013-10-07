@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
 //
 
-#import <MapKit/MapKit.h>
+#import "MapVC.h"
 
 @interface CityOverlayRenderer : MKOverlayRenderer
-
+@property (nonatomic) StationAnnotationMode mode;
 @end
