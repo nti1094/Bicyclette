@@ -11,6 +11,7 @@
 #import "Station.h"
 #import "Station+Update.h"
 #import "Style.h"
+#import "BICCGUtilities.h"
 
 @interface CityOverlayRenderer ()
 @property (readonly) BicycletteCity * city;
@@ -29,7 +30,7 @@
 {
 
     // stations will be drawn using a rect whose size depends on the scale
-    CGFloat stationRadius = MKRoadWidthAtZoomScale(zoomScale) * 2;
+    CGFloat stationRadius = MKRoadWidthAtZoomScale(zoomScale);
     
     // We're going to need a slightly larger rect to draw stations that are just near the border
     CGRect rect = CGRectInset([self rectForMapRect:mapRect], -stationRadius, -stationRadius);
@@ -54,11 +55,18 @@
         } else {
             color = kUnknownValueColor;
         }
-        color = [color colorWithAlphaComponent:.5];
+        color = [color colorWithAlphaComponent:.8];
         CGContextSetFillColorWithColor(context, color.CGColor);
 
-        CGRect stationRect = CGRectMake(point.x-stationRadius/2, point.y-stationRadius/2, stationRadius, stationRadius);
-        CGContextFillEllipseInRect(context, CGRectIntegral(stationRect));
+        CGRect stationRect = CGRectMake(point.x-stationRadius, point.y-stationRadius, stationRadius * 2, stationRadius * 2);
+        if(self.mode==StationAnnotationModeBikes) {
+            CGContextFillEllipseInRect(context, CGRectIntegral(stationRect));
+        } else {
+            CGPathRef path = BIC_CGPathCreateWithRoundedRect(stationRect, stationRadius/2);
+            CGContextAddPath(context, path);
+            CGPathRelease(path);
+            CGContextFillPath(context);
+        }
     }
 }
 

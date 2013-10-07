@@ -8,8 +8,8 @@
 
 #import "StationAnnotationView+Drawing.h"
 #import "Style.h"
-
 #import "UIColor+hsb.h"
+#import "BICCGUtilities.h"
 
 typedef enum{
     BackgroundShapeRoundedRect,
@@ -109,29 +109,9 @@ typedef enum{
 {
 	CGPathRef path;
     switch (shape) {
-        case BackgroundShapeRoundedRect: path = [self newPath:rect cornerRadius:4]; break;
+        case BackgroundShapeRoundedRect: path = BIC_CGPathCreateWithRoundedRect(rect, 4); break;
         case BackgroundShapeOval: path = CGPathCreateWithEllipseInRect(rect, &CGAffineTransformIdentity); break;
     }
-    return path;
-}
-
-// Create a path for a rect with rounded corners
-+ (CGPathRef) newPath:(CGRect)rect cornerRadius:(CGFloat)cornerRadius
-{
-    CGFloat minx = CGRectGetMinX(rect), midx = CGRectGetMidX(rect), maxx = CGRectGetMaxX(rect);
-    CGFloat miny = CGRectGetMinY(rect), midy = CGRectGetMidY(rect), maxy = CGRectGetMaxY(rect);
-    
-    CGMutablePathRef path = CGPathCreateMutable();
-    
-    CGPathMoveToPoint(path, NULL, minx, midy);
-    
-    CGPathAddArcToPoint(path, NULL, minx, miny, midx, miny, cornerRadius);
-    CGPathAddArcToPoint(path, NULL, maxx, miny, maxx, midy, cornerRadius);
-    CGPathAddArcToPoint(path, NULL, maxx, maxy, midx, maxy, cornerRadius);
-    CGPathAddArcToPoint(path, NULL, minx, maxy, minx, midy, cornerRadius);
-    
-    CGPathCloseSubpath(path);
-    
     return path;
 }
 
