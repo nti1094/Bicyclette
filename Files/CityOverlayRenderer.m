@@ -27,8 +27,15 @@
           zoomScale:(MKZoomScale)zoomScale
           inContext:(CGContextRef)context
 {
+
+    // stations will be drawn using a rect whose size depends on the scale
     CGFloat stationRadius = MKRoadWidthAtZoomScale(zoomScale) * 2;
     
+    // We're going to need a slightly larger rect to draw stations that are just near the border
+    CGRect rect = CGRectInset([self rectForMapRect:mapRect], -stationRadius, -stationRadius);
+    mapRect = [self mapRectForRect:rect];
+    
+    // Fetch all the stations in this rect
     NSArray * stations = [self.city stationsWithinRegion:MKCoordinateRegionForMapRect(mapRect)];
     for (Station * station in stations) {
         CGPoint point = [self pointForMapPoint:MKMapPointForCoordinate(station.coordinate)];
@@ -50,8 +57,8 @@
         color = [color colorWithAlphaComponent:.5];
         CGContextSetFillColorWithColor(context, color.CGColor);
 
-        CGRect rect = CGRectMake(point.x-stationRadius/2, point.y-stationRadius/2, stationRadius, stationRadius);
-        CGContextFillEllipseInRect(context, CGRectIntegral(rect));
+        CGRect stationRect = CGRectMake(point.x-stationRadius/2, point.y-stationRadius/2, stationRadius, stationRadius);
+        CGContextFillEllipseInRect(context, CGRectIntegral(stationRect));
     }
 }
 
