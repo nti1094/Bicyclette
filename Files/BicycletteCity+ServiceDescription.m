@@ -19,7 +19,7 @@
     if([self isStoreLoaded])
     {
         // Set real Region instead of hardcoded data
-        CLCircularRegion * regionContainingData = self.regionContainingData;
+        CLRegion * regionContainingData = self.regionContainingData;
         [info setObject:@(regionContainingData.center.latitude) forKey:@"latitude"];
         [info setObject:@(regionContainingData.center.longitude) forKey:@"longitude"];
         [info setObject:@(regionContainingData.radius) forKey:@"radius"];

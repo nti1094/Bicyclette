@@ -18,7 +18,7 @@
 
 @interface BicycletteCity ()
 @property NSDictionary* serviceInfo;
-@property (nonatomic, readwrite) CLCircularRegion * regionContainingData;
+@property (nonatomic, readwrite) CLRegion * regionContainingData;
 @end
 
 #pragma mark -
@@ -125,14 +125,14 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
     return [[NSUserDefaults standardUserDefaults] objectForKey:key];
 }
 
-- (CLCircularRegion *) knownRegion
+- (CLRegion *) knownRegion
 {
-    return [[CLCircularRegion alloc] initWithCenter:CLLocationCoordinate2DMake([self.serviceInfo[@"latitude"] doubleValue],
+    return [[CLRegion alloc] initCircularRegionWithCenter:CLLocationCoordinate2DMake([self.serviceInfo[@"latitude"] doubleValue],
                                                                                [self.serviceInfo[@"longitude"] doubleValue])
                                              radius:[self.serviceInfo[@"radius"] doubleValue] identifier:[self title]];
 }
 
-- (CLCircularRegion*) regionContainingData
+- (CLRegion*) regionContainingData
 {
 	if(nil==_regionContainingData)
 	{
@@ -156,9 +156,9 @@ static BOOL BicycletteCitySaveStationsWithNoIndividualStatonUpdates(void)
         for (Station * station in stations)
             distanceMax = MAX(distanceMax, [station.location distanceFromLocation:dataCenter]);
         
-		self.regionContainingData = [[CLCircularRegion alloc] initWithCenter:dataCenter.coordinate
-                                                                      radius:distanceMax
-                                                                  identifier:[self title]];
+		self.regionContainingData = [[CLRegion alloc] initCircularRegionWithCenter:dataCenter.coordinate
+                                                                            radius:distanceMax
+                                                                        identifier:[self title]];
 	}
     return _regionContainingData;
 }
