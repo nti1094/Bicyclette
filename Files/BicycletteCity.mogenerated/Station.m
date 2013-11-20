@@ -2,6 +2,7 @@
 #import "BicycletteCity.h"
 #import "NSStringAdditions.h"
 #import "NSError+MultipleErrorsCombined.h"
+#import "CLRegion+CircularRegionCompatibility.h"
 
 @implementation Station
 {
@@ -83,8 +84,8 @@
 - (BOOL)validateConsistency:(NSError **)error
 {
     CLRegion * knownRegion = self.city.knownRegion;
-    CLLocation * center = [[CLLocation alloc] initWithLatitude:knownRegion.center.latitude longitude:knownRegion.center.longitude];
-    if([center distanceFromLocation:self.location] < knownRegion.radius * 1.5 || knownRegion.radius==0)
+    CLLocation * center = [[CLLocation alloc] initWithLatitude:knownRegion.bic_compat_center.latitude longitude:knownRegion.bic_compat_center.longitude];
+    if([center distanceFromLocation:self.location] < knownRegion.bic_compat_radius * 1.5 || knownRegion.bic_compat_radius==0)
         return YES;
 
     if (error != NULL) {
