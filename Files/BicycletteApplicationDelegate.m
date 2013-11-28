@@ -32,28 +32,35 @@
 
 #pragma mark Application lifecycle
 
-- (void) awakeFromNib
+- (id)init
 {
-	// Load Factory Defaults
-	[[NSUserDefaults standardUserDefaults] registerDefaults:
-	 [NSDictionary dictionaryWithContentsOfFile:
-	  [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
-
-    
-    self.window.tintColor = kBicycletteBlue;
-    
-    self.citiesController = [CitiesController new];
-    
-    self.rootVC.citiesController = self.citiesController;
+    self = [super init];
+    if (self) {
+        // Load Factory Defaults
+        [[NSUserDefaults standardUserDefaults] registerDefaults:
+         [NSDictionary dictionaryWithContentsOfFile:
+          [[NSBundle mainBundle] pathForResource:@"FactoryDefaults" ofType:@"plist"]]];
+    }
+    return self;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Clear all notifications.
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    
-    // Must not do it automatically, otherwise the UI is broken vertically, initially, on iPad on iOS 5
+
+    // Backend
+    self.citiesController = [CitiesController new];
+
+    // Setup UI and VCs
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.tintColor = kBicycletteBlue;
+
+    self.rootVC = [RootVC new];
+    self.rootVC.citiesController = self.citiesController;
     self.window.rootViewController = self.rootVC;
+
+    [self.window makeKeyAndVisible];
 	return YES;
 }
 

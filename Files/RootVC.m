@@ -13,22 +13,31 @@
 #import "CitiesController.h"
 #import "UIApplication+LocalAlerts.h"
 
-@interface RootVC () <UIAlertViewDelegate>
+@interface RootVC () <UINavigationControllerDelegate>
 @end
 
 #pragma mark -
 
 @implementation RootVC
-
-- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithCoder:aDecoder];
+    MapVC * _mapVC;
+    PrefsVC * _prefsVC;
+}
+
+- (id)init
+{
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(notifyCanRequestLocation) name:UIApplicationDidFinishLaunchingNotification
                                                    object:nil];
+
+        _mapVC = [MapVC new];
+        _prefsVC = [PrefsVC prefsVC];
         
-        self.backViewController = [[UIStoryboard storyboardWithName:@"PrefsVC" bundle:nil] instantiateInitialViewController];
+        self.delegate = self;
+        
+        self.viewControllers = @[_mapVC];
     }
     return self;
 }
@@ -44,39 +53,32 @@
 }
 
 /****************************************************************************/
+#pragma mark UINavigationControllerDelegate
+
+- (void) showPrefsVC
+{
+    [self pushViewController:_prefsVC animated:YES];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if(viewController==_mapVC) {
+        [self setNavigationBarHidden:YES animated:YES];
+    } else {
+        [self setNavigationBarHidden:NO animated:YES];
+    }
+}
+
+
+/****************************************************************************/
 #pragma mark -
 
 - (void) setCitiesController:(CitiesController *)citiesController
 {
     _citiesController = citiesController;
-    MapVC * mapVC = (MapVC*)[(UINavigationController*)self.frontViewController visibleViewController];
-    mapVC.controller = self.citiesController;
-    citiesController.delegate = mapVC;
-    PrefsVC * prefsVC = (PrefsVC*)self.backViewController;
-    prefsVC.controller = self.citiesController;
-}
-
-/****************************************************************************/
-#pragma mark -
-
-- (void) viewDidLoad
-{
-    // info button
-    CGRect rootViewBounds = self.view.bounds;
-    CGSize infoButtonSize = self.infoButton.bounds.size;
-    
-    self.infoButton.center = CGPointMake(CGRectGetMaxX(rootViewBounds) - infoButtonSize.width - 8,
-                                         CGRectGetMaxY(rootViewBounds) - infoButtonSize.height);
-    [self.view addSubview:self.infoButton];
-
-    [super viewDidLoad];
-
-    [self.view bringSubviewToFront:self.infoButton];
-}
-
-- (CGPoint) rotationCenter
-{
-    return self.infoButton.center;
+    _mapVC.controller = self.citiesController;
+    citiesController.delegate = _mapVC;
+    _prefsVC.controller = self.citiesController;
 }
 
 @end

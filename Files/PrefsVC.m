@@ -9,7 +9,6 @@
 #import "PrefsVC.h"
 #import "BicycletteCity+Update.h"
 #import "CitiesController.h"
-#import "FanContainerViewController.h"
 #import "NSProcessInfo+HardwareMachine.h"
 #import "Style.h"
 
@@ -38,6 +37,11 @@
 #pragma mark -
 
 @implementation PrefsVC
+
++ (instancetype) prefsVC
+{
+    return [[UIStoryboard storyboardWithName:@"PrefsVC" bundle:nil] instantiateInitialViewController];
+}
 
 - (void)awakeFromNib
 {
@@ -202,7 +206,7 @@
         if(dataChanged)
         {
             [self.updateButton setTitle:NSLocalizedString(@"UPDATE_STATIONS_LIST_BUTTON", nil)  forState:UIControlStateNormal];
-            if([self isVisibleViewController])
+            if(self.navigationController.visibleViewController == self)
             {
                 NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[Station entityName]];
                 NSUInteger count = [self.controller.currentCity.mainContext countForFetchRequest:request error:NULL];
