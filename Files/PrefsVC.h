@@ -8,7 +8,7 @@
 
 @class CitiesController;
 @interface PrefsVC : UITableViewController
-+ (instancetype) prefsVC;
++ (instancetype) prefsVCWithController:(CitiesController *)controller;
 
-@property (nonatomic) CitiesController * controller;
+@property (nonatomic, readonly) CitiesController * controller;
 @end

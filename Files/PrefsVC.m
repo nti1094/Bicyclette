@@ -38,9 +38,11 @@
 
 @implementation PrefsVC
 
-+ (instancetype) prefsVC
++ (instancetype) prefsVCWithController:(CitiesController *)controller
 {
-    return [[UIStoryboard storyboardWithName:@"PrefsVC" bundle:nil] instantiateInitialViewController];
+    PrefsVC * prefsVC = [[UIStoryboard storyboardWithName:@"PrefsVC" bundle:nil] instantiateInitialViewController];
+    prefsVC.controller = controller;
+    return prefsVC;
 }
 
 - (void)awakeFromNib
@@ -51,7 +53,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateGotNewData object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateSucceeded object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDataUpdated:) name:BicycletteCityNotifications.updateFailed object:nil];
-}
+    }
 
 - (void)dealloc
 {
@@ -102,6 +104,10 @@
         self.geofencesSwitch.hidden = YES;
         self.enableGeofencesLabel.hidden = YES;
     }
+    
+    UIBarButtonItem * backButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self.navigationController action:@selector(popViewControllerAnimated:)];
+    self.toolbarItems = @[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                          backButton];
 }
 
 - (void) viewWillAppear:(BOOL)animated{

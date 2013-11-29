@@ -13,6 +13,4 @@
 
 @property (nonatomic) CitiesController * citiesController;
 
-- (void) showPrefsVC;
-
 @end

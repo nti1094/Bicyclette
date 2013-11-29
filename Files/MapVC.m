@@ -22,13 +22,11 @@
 #import "MKUtilities.h"
 #import "CityOverlayRenderer.h"
 #import "CLRegion+CircularRegionCompatibility.h"
-
-#import "RootVC.h"
+#import "PrefsVC.h"
 
 @interface MapVC()
 // UI
 @property MKMapView * mapView;
-@property UIToolbar * mapVCToolbar; // Do not use the system toolbal to prevent its height from changing
 @property MKUserTrackingBarButtonItem * userTrackingButton;
 @property UISegmentedControl * modeControl;
 @property UIBarButtonItem * infoButton;
@@ -109,21 +107,19 @@
     modeItem.width = 160;
     
     UIButton * iButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
-    [iButton addTarget:self.navigationController action:@selector(showPrefsVC) forControlEvents:UIControlEventTouchUpInside];
+    [iButton addTarget:self action:@selector(showPrefsVC) forControlEvents:UIControlEventTouchUpInside];
     self.infoButton = [[UIBarButtonItem alloc] initWithCustomView:iButton];
     
     // create toolbar
-    self.mapVCToolbar = [[UIToolbar alloc] initWithFrame:toolBarFrame];
-    [self.view addSubview:self.mapVCToolbar];
-    self.mapVCToolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-    self.mapVCToolbar.items = @[self.userTrackingButton,
-                                [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                                modeItem,
-                                [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                                self.infoButton];
+    self.toolbarItems = @[self.userTrackingButton,
+                          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                          modeItem,
+                          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                          self.infoButton];
     
+    self.navigationController.toolbarHidden = NO;
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        self.mapVCToolbar.translucent = YES;
+        self.navigationController.toolbar.translucent = YES;
     
     // Add Scale
     CGRect scaleFrame = frameAboveToolbar;
@@ -412,6 +408,10 @@
     [cityRenderer setNeedsDisplay];
 }
 
+- (void) showPrefsVC
+{
+    [self.navigationController pushViewController:[PrefsVC prefsVCWithController:self.controller] animated:YES];
+}
 /****************************************************************************/
 #pragma mark Banner
 
