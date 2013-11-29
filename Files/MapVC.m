@@ -43,6 +43,13 @@
 
 @implementation MapVC
 
++ (instancetype) mapVCWithController:(CitiesController*)controller_
+{
+    MapVC * mapVC = [self new];
+    mapVC.controller = controller_;
+    return mapVC;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nil bundle:nil];

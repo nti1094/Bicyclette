@@ -8,17 +8,14 @@
 
 #import "BicycletteApplicationDelegate.h"
 #import "Station.h"
-#import "RootVC.h"
 #import "CitiesController.h"
 #import "BicycletteCity.h"
 #import "Style.h"
+#import "MapVC.h"
 
 #pragma mark Private Methods
 
 @interface BicycletteApplicationDelegate()
-@property CitiesController * citiesController;
-
-@property IBOutlet RootVC *rootVC;
 @end
 
 @interface BicycletteApplicationDelegate (GAI)
@@ -29,7 +26,11 @@
 #pragma mark -
 
 @implementation BicycletteApplicationDelegate
-
+{
+    UINavigationController * _rootVC;
+    MapVC * _mapVC;
+    CitiesController * _citiesController;
+}
 #pragma mark Application lifecycle
 
 - (id)init
@@ -50,17 +51,19 @@
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
 
     // Backend
-    self.citiesController = [CitiesController new];
+    _citiesController = [CitiesController new];
 
     // Setup UI and VCs
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.tintColor = kBicycletteBlue;
 
-    self.rootVC = [RootVC new];
-    self.rootVC.citiesController = self.citiesController;
-    self.window.rootViewController = self.rootVC;
+    _mapVC = [MapVC mapVCWithController:_citiesController];
+    _rootVC = [[UINavigationController alloc] initWithRootViewController:_mapVC];
+    self.window.rootViewController = _rootVC;
 
     [self.window makeKeyAndVisible];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:BicycletteCityNotifications.canRequestLocation object:nil];
 	return YES;
 }
 
@@ -78,7 +81,7 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     if([notification.userInfo[@"type"] isEqualToString:@"stationsummary"]) {
-        [self.citiesController handleLocalNotificaion:notification];
+        [_citiesController handleLocalNotificaion:notification];
     }
 }
 

@@ -58,7 +58,6 @@
 		3747106A15B3754E00C1D1D9 /* LocalUpdateQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */; };
 		3748429716772DE600DD457E /* SenTestCase+RunLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = 3748429616772DE600DD457E /* SenTestCase+RunLoop.m */; };
 		374C181916F9F8B700C6D1A6 /* UnusedCities.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 378C6BFA169C362E009DDC84 /* UnusedCities.json */; };
-		37513B6316173FAB00388FF3 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 37513B6216173FAB00388FF3 /* RootVC.m */; };
 		3756EAA61297F60000113534 /* FactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3756EAA51297F60000113534 /* FactoryDefaults.plist */; };
 		375760F31687D0DA0042FCF8 /* NextBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 375760F21687D0DA0042FCF8 /* NextBikeCity.m */; };
 		375760F41687D0DA0042FCF8 /* NextBikeCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 375760F21687D0DA0042FCF8 /* NextBikeCity.m */; };
@@ -288,8 +287,6 @@
 		3747106915B3754E00C1D1D9 /* LocalUpdateQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalUpdateQueue.m; sourceTree = "<group>"; };
 		3748429516772DE600DD457E /* SenTestCase+RunLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SenTestCase+RunLoop.h"; sourceTree = "<group>"; };
 		3748429616772DE600DD457E /* SenTestCase+RunLoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SenTestCase+RunLoop.m"; sourceTree = "<group>"; };
-		37513B6116173FAB00388FF3 /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
-		37513B6216173FAB00388FF3 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
 		37516B3817523BD8001E70F4 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37516B3917523BE0001E70F4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3756EAA51297F60000113534 /* FactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FactoryDefaults.plist; sourceTree = "<group>"; };
@@ -468,8 +465,6 @@
 			isa = PBXGroup;
 			children = (
 				37EFCF3A159E495F007B2E41 /* Style.h */,
-				37513B6116173FAB00388FF3 /* RootVC.h */,
-				37513B6216173FAB00388FF3 /* RootVC.m */,
 				37D131FB163F329B00AABEE4 /* Map */,
 				37D131F9163F328500AABEE4 /* Prefs */,
 				37D131F7163F325100AABEE4 /* AnnotationViews */,
@@ -1176,7 +1171,6 @@
 				37F7587B15C56A8300907A05 /* UIApplication+LocalAlerts.m in Sources */,
 				37F5FD68161636FA00E6FFC2 /* UIApplication+screenshot.m in Sources */,
 				37F5FD6C16165B2F00E6FFC2 /* MapVC+DebugScreenshots.m in Sources */,
-				37513B6316173FAB00388FF3 /* RootVC.m in Sources */,
 				374334CA164B0EC00051294F /* CitiesController.m in Sources */,
 				37AA66191653E9EA001F9660 /* CollectionsAdditions.m in Sources */,
 				370220DB165525B100350AD1 /* BicycletteCity.mogenerated.m in Sources */,
