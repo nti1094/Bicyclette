@@ -27,8 +27,6 @@
 
 @implementation BicycletteApplicationDelegate
 {
-    UINavigationController * _rootVC;
-    MapVC * _mapVC;
     CitiesController * _citiesController;
 }
 #pragma mark Application lifecycle
@@ -57,9 +55,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.tintColor = kBicycletteBlue;
 
-    _mapVC = [MapVC mapVCWithController:_citiesController];
-    _rootVC = [[UINavigationController alloc] initWithRootViewController:_mapVC];
-    self.window.rootViewController = _rootVC;
+    MapVC * mapVC = [MapVC mapVCWithController:_citiesController];
+    _citiesController.delegate = mapVC;
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:mapVC];
 
     [self.window makeKeyAndVisible];
     
