@@ -84,6 +84,9 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    
+    _appIconCell.backgroundColor = kBicycletteBlue;
+    _appIconCell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 1000);
         
     _enableGeofencesLabel.text = NSLocalizedString(@"ENABLE_GEOFENCES", nil);
     _geofencesSwitch.tintColor = [UIColor colorWithWhite:.1 alpha:1];
