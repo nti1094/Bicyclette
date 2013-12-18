@@ -12,3 +12,5 @@ _DataGrabTempFolder/
 _Archives/
 _Accounts.json
 _GoogleAnalytics.plist
+
+submodules/BicycletteAPIKeys
